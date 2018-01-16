@@ -12,7 +12,12 @@ const NinjaSchema = new Schema({
     available: {
         type : Boolean,
         default: false
+    },
+    long: {
+
     }
+    
+
 });
 
 const Ninja = mongoose.model('ninja',NinjaSchema);

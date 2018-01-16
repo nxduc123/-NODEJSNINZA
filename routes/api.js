@@ -3,7 +3,7 @@ const router = express.Router();
 const Ninja = require('../models/ninja');
 
 //Lay du lieu ninjas tu db
-router.get('/ninjas', function(req, res){
+router.get('/ninjas', function(req, res, next){
     res.send({type:'GET'});
 });
 
@@ -15,13 +15,20 @@ router.post('/ninjas', function(req, res, next){
 });
 
 //UPDATE VAO DB NINJA
-router.put('/ninjas/:id', function(req, res){
-    res.send({type:'PUT'});
+router.put('/ninjas/:id', function(req, res, next){
+    Ninja.findByIdAndUpdate({_id: req.params.id},req.body).then(function(){
+        Ninja.findOne({_id: req.params.id}).then(function(ninja){
+            res.send(ninja);
+        });
+    });
 });
 
 //DELETE NINJA FrOM DB
-router.delete('/ninjas/:id', function(req,res){
-    res.send({type:'DELETE'});
+router.delete('/ninjas/:id', function(req,res, next){
+    Ninja.findByIdAndRemove({_id: req.params.id}).then(function(ninja){
+        res.send(ninja);
+    }).catch(next);
+    
 });
 
 module.exports = router;
