@@ -6,7 +6,7 @@ const NinjaSchema = new Schema({
         type : String,
         required: [true, 'Name field is required']
     },
-    reank : {
+    rank : {
         type : String
     },
     available: {
