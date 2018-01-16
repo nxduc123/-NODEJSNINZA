@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Ninja = require('../models/ninja');
 
 //Lay du lieu ninjas tu db
 router.get('/ninjas', function(req,res){
@@ -8,13 +9,9 @@ router.get('/ninjas', function(req,res){
 
 //Them DU LIEU NINJA VAO DB
 router.post('/ninjas', function(req,res){
-    console.log(req.body);
-    res.send({
-        type:'POST',
-        name: req.body.name,
-        ho: req.body.ho
-    
-    });
+   Ninja.create(req.body).then(function(ninja){
+    res.send(ninja);
+   });
 });
 
 //UPDATE VAO DB NINJA
