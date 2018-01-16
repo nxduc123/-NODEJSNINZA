@@ -13,6 +13,11 @@ app.use(bodyParser.json());
 
 app.use('/api',routes);
 
+app.use(function(err, req, res, next){
+        res.send({error:err.message});
+
+});
+
 app.listen(process.env.port || 4000, function(){
         console.log('now listenning fo requests port 4000')
 });
