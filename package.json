@@ -18,5 +18,8 @@
   "homepage": "https://github.com/nxduc123/-NODEJSNINZA#readme",
   "dependencies": {
     "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.11"
   }
 }
